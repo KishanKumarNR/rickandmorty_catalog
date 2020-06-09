@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/rickandmorty_catalog/static/css/main.5314f007.chunk.css",
-    "main.js": "/rickandmorty_catalog/static/js/main.77604d6f.chunk.js",
-    "main.js.map": "/rickandmorty_catalog/static/js/main.77604d6f.chunk.js.map",
+    "main.css": "/rickandmorty_catalog/static/css/main.229ba65f.chunk.css",
+    "main.js": "/rickandmorty_catalog/static/js/main.7e1d03c0.chunk.js",
+    "main.js.map": "/rickandmorty_catalog/static/js/main.7e1d03c0.chunk.js.map",
     "runtime-main.js": "/rickandmorty_catalog/static/js/runtime-main.51d18881.js",
     "runtime-main.js.map": "/rickandmorty_catalog/static/js/runtime-main.51d18881.js.map",
     "static/css/2.af3c1da9.chunk.css": "/rickandmorty_catalog/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.8c78aabb.chunk.js": "/rickandmorty_catalog/static/js/2.8c78aabb.chunk.js",
-    "static/js/2.8c78aabb.chunk.js.map": "/rickandmorty_catalog/static/js/2.8c78aabb.chunk.js.map",
+    "static/js/2.92b5f41d.chunk.js": "/rickandmorty_catalog/static/js/2.92b5f41d.chunk.js",
+    "static/js/2.92b5f41d.chunk.js.map": "/rickandmorty_catalog/static/js/2.92b5f41d.chunk.js.map",
     "index.html": "/rickandmorty_catalog/index.html",
-    "precache-manifest.d808af67e2f587cd604571b3829ed4d7.js": "/rickandmorty_catalog/precache-manifest.d808af67e2f587cd604571b3829ed4d7.js",
+    "precache-manifest.1b77116fa89833666f2806afb7016159.js": "/rickandmorty_catalog/precache-manifest.1b77116fa89833666f2806afb7016159.js",
     "service-worker.js": "/rickandmorty_catalog/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/rickandmorty_catalog/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.5314f007.chunk.css.map": "/rickandmorty_catalog/static/css/main.5314f007.chunk.css.map",
-    "static/js/2.8c78aabb.chunk.js.LICENSE.txt": "/rickandmorty_catalog/static/js/2.8c78aabb.chunk.js.LICENSE.txt",
-    "static/media/Cartoon_Network_1992_logo.svg": "/rickandmorty_catalog/static/media/Cartoon_Network_1992_logo.3c26307a.svg"
+    "static/css/main.229ba65f.chunk.css.map": "/rickandmorty_catalog/static/css/main.229ba65f.chunk.css.map",
+    "static/js/2.92b5f41d.chunk.js.LICENSE.txt": "/rickandmorty_catalog/static/js/2.92b5f41d.chunk.js.LICENSE.txt",
+    "static/media/Cartoon_Network_1992_logo.svg": "/rickandmorty_catalog/static/media/Cartoon_Network_1992_logo.3c26307a.svg",
+    "static/media/Rick_and_Morty_logo.png": "/rickandmorty_catalog/static/media/Rick_and_Morty_logo.42d6efdb.png",
+    "static/media/App.css": "/rickandmorty_catalog/static/media/double-bubble-dark.444cea35.png"
   },
   "entrypoints": [
     "static/js/runtime-main.51d18881.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.8c78aabb.chunk.js",
-    "static/css/main.5314f007.chunk.css",
-    "static/js/main.77604d6f.chunk.js"
+    "static/js/2.92b5f41d.chunk.js",
+    "static/css/main.229ba65f.chunk.css",
+    "static/js/main.7e1d03c0.chunk.js"
   ]
 }
