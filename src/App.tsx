@@ -19,6 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {FormControl, FormLabel, FormControlLabel, RadioGroup, Radio} from "@material-ui/core";
+import {DropdownButton, Dropdown} from "react-bootstrap";
 
 const drawerWidth = 240;
 
@@ -139,6 +140,21 @@ function App() {
             })
     }
 
+    const handleSelect = (evt) => {
+        // what am I suppose to write in there to get the value?
+        console.log(evt)
+        var newArrayCharacters = newArrayCharacters = characters.slice();;
+        switch(evt) {
+            case("ascending"):
+                newArrayCharacters.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+                break;
+            case("descending"):
+                newArrayCharacters.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
+                break;
+        }
+        setCharacters(newArrayCharacters);
+    }
+
 
     return (
     <div className="App">
@@ -191,6 +207,10 @@ function App() {
           </Drawer>
           <main className={classes.content+ ' ' +"App-container"}>
               <Toolbar />
+              <DropdownButton id="dropdown-basic-button" title="Filter by Id" onSelect={handleSelect}>
+                  <Dropdown.Item eventKey='ascending'>Ascending</Dropdown.Item>
+                  <Dropdown.Item eventKey='descending'>Descending</Dropdown.Item>
+              </DropdownButton>
               <Showcase characters={characters}></Showcase>
           </main>
 
