@@ -70,7 +70,13 @@ async function filterCharacters(gender: string, specie: string) {
 //   ]
 // }
 
-module.exports = {
+async function getCharactersByPage(url: string) {
+    const response = await fetch(url);
+    return response.json();
+}
+
+const Api = {
+    getCharactersByPage,
     filterCharacters,
     getCharactersByName,
     getCharacterCount,
@@ -78,3 +84,5 @@ module.exports = {
     getAllCharacters
     // getCharactersFromPage
 };
+
+export default Api;

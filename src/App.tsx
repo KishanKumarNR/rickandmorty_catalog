@@ -19,7 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {FormControl, FormLabel, FormControlLabel, RadioGroup, Radio} from "@material-ui/core";
-import {DropdownButton, Dropdown} from "react-bootstrap";
+import {DropdownButton, Dropdown, Pagination} from "react-bootstrap";
 
 const drawerWidth = 240;
 
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
             backgroundColor: "#343a40 !important",
+            height: "20px !important"
         },
         drawer: {
             width: drawerWidth,
@@ -54,56 +55,26 @@ function App() {
   let [count, setCount] = useState(0);
   let [characters, setCharacters] = useState([]);
   let [notFound, setNotFound] = useState(false);
+  let [page, setPage] = useState(1);
+  let [paginator, setPaginator] = useState({});
 
   useEffect(() => {
       Api.getAllCharacters()
-          .then((response: any) => {
-                const {info, results} = response;
-                setCount(info.count);
-                setCharacters(results);
-              setNotFound(false);
-          })
-          .catch((error: any) => {
-              setCount(0);
-              setCharacters([]);
-              setNotFound(true);
-                console.log(error);
-          })
+          .then(setupShowcase)
+          .catch(errorShowcase)
   }, [])
 
     const filterByName = (searchValue: any) => {
         // logger.debug(`submitted with query: ${this.state.searchValue}`);
         Api.getCharactersByName(searchValue)
-            .then(({ info, results }) => {
-                setNotFound(false);
-                if (results && results.length) {
-                    setCharacters(results);
-                } else {
-                    setCharacters([]);
-                }
-                setCount(info.count)
-            })
-            .catch(() => {
-                setCount(0);
-                setCharacters([]);
-                setNotFound(true)
-            });
+            .then(setupShowcase)
+            .catch(errorShowcase);
     }
 
     const resetAll = () => {
         Api.getAllCharacters()
-            .then((response: any) => {
-                const {info, results} = response;
-                setCount(info.count);
-                setCharacters(results);
-                setNotFound(false);
-            })
-            .catch((error: any) => {
-                setCount(0);
-                setCharacters([]);
-                setNotFound(true);
-                console.log(error);
-            })
+            .then(setupShowcase)
+            .catch(errorShowcase)
         setGender('');
         setSpecie('');
     }
@@ -126,18 +97,34 @@ function App() {
 
     const applyFilters = () => {
         Api.filterCharacters(gender, specie)
-            .then((response: any) => {
-                const {info, results} = response;
-                setCount(info.count);
-                setCharacters(results);
-                setNotFound(false);
-            })
-            .catch((error: any) => {
-                setCount(0);
-                setCharacters([]);
-                setNotFound(true);
-                console.log(error);
-            })
+            .then(setupShowcase)
+            .catch(errorShowcase)
+    }
+
+    const setupShowcase = (response: any) => {
+        const {info, results} = response;
+        let page = 0;
+        if (info && info.next) {
+            page = info && Number(info.next.split("=")[1]);
+            page = page-1;
+        } else if (info && info.prev) {
+            page = info && Number(info.prev.split("=")[1]);
+            page = page+1;
+        }
+        setCount(info.count);
+        setCharacters(results);
+        setNotFound(false);
+        setPaginator({...info});
+        setPage(page)
+    }
+
+    const errorShowcase = (error: any) => {
+        setCount(0);
+        setCharacters([]);
+        setNotFound(true);
+        setPaginator({});
+        setPage(0)
+        console.log(error);
     }
 
     const handleSelect = (evt) => {
@@ -155,6 +142,18 @@ function App() {
         setCharacters(newArrayCharacters);
     }
 
+    const handlePaginator = (event: any) => {
+        console.log("paginating", event.target.text);
+        switch(event.target.text) {
+            case("›Next"):
+                paginator.next && Api.getCharactersByPage(paginator.next).then(setupShowcase).catch(errorShowcase)
+                break;
+            case("‹Previous"):
+                paginator.prev && Api.getCharactersByPage(paginator.prev).then(setupShowcase).catch(errorShowcase)
+                break;
+        }
+    }
+
 
     return (
     <div className="App">
@@ -165,7 +164,7 @@ function App() {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
 
-                <Navbar count={count} filterByName={filterByName} resetAll={resetAll}/>
+                <Navbar page={page} count={count} filterByName={filterByName} resetAll={resetAll}/>
 
         </AppBar>
 
@@ -207,11 +206,20 @@ function App() {
           </Drawer>
           <main className={classes.content+ ' ' +"App-container"}>
               <Toolbar />
-              <DropdownButton id="dropdown-basic-button" title="Filter by Id" onSelect={handleSelect}>
-                  <Dropdown.Item eventKey='ascending'>Ascending</Dropdown.Item>
-                  <Dropdown.Item eventKey='descending'>Descending</Dropdown.Item>
-              </DropdownButton>
+              <div className="d-block ml-auto filterCardIdBtn">
+                  <DropdownButton id="dropdown-basic-button" title="Filter by Id" onSelect={handleSelect}>
+                      <Dropdown.Item eventKey='ascending'>Ascending</Dropdown.Item>
+                      <Dropdown.Item eventKey='descending'>Descending</Dropdown.Item>
+                  </DropdownButton>
+              </div>
               <Showcase characters={characters}></Showcase>
+          <Pagination onClick={handlePaginator}>
+              {/*<Pagination.First />*/}
+              <Pagination.Prev />
+              <Pagination.Item>{page}</Pagination.Item>
+              <Pagination.Next />
+              {/*<Pagination.Last />*/}
+          </Pagination>
           </main>
 
     </div>

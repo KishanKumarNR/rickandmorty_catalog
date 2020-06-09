@@ -19,11 +19,11 @@ export default function (props: any) {
                 <Nav className="mr-auto">
                     {/*<Nav.Link href="#home">Home</Nav.Link>*/}
 
-                    <Nav.Link className="App-link"
+                    <Nav.Link className="App-link customNavTxtLink"
                               href="https://rickandmortyapi.com/"
                               target="_blank"
                               rel="noopener noreferrer">
-                        Rick & Morty character catalog 20 of {props.count} showing.
+                        Rick & Morty character catalog {20*props.page - 20} - {20*props.page} of {props.count} showing.
                     </Nav.Link>
                     <Nav.Link className="resetbtn" href="#features"
                               onClick={props.resetAll}

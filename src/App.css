@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 10vmin;
+  height: 5vmin;
   pointer-events: none;
 }
 
@@ -171,5 +171,25 @@ figure {
   border-radius: 10px;
   background-color: crimson;
   color: white;
+  font-weight: bold;
+}
+
+.filterCardIdBtn {
+  margin-right: 15%;
+  margin-left: auto;
+}
+
+.mr-0 {
+  margin-right: 0;
+}
+.ml-auto {
+  margin-left:auto;
+}
+.d-block {
+  display:block;
+}
+
+.customNavTxtLink {
+  color: #7abaff !important;
   font-weight: bold;
 }
