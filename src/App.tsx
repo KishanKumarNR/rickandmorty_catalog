@@ -20,7 +20,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {FormControl, FormLabel, FormControlLabel, RadioGroup, Radio} from "@material-ui/core";
 import {DropdownButton, Dropdown, Pagination} from "react-bootstrap";
-
+import Background from "./assets/images/double-bubble-dark.png"
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -57,6 +57,8 @@ function App() {
   let [notFound, setNotFound] = useState(false);
   let [page, setPage] = useState(1);
   let [paginator, setPaginator] = useState({});
+  let [modalActive, setModalActive] = useState(false);
+  let [modalCharacter, setModalCharacter] = useState({});
 
   useEffect(() => {
       Api.getAllCharacters()
@@ -127,6 +129,19 @@ function App() {
         console.log(error);
     }
 
+    const setActiveCharacter = (id: number) => {
+        Api.getCharacterById(id).then(data => {
+            console.log(data);
+            setModalCharacter(data)
+            setModalActive(true);
+        });
+    }
+
+    const unsetActiveCharacter = () => {
+        setModalCharacter({});
+        setModalActive(false);
+    }
+
     const handleSelect = (evt) => {
         // what am I suppose to write in there to get the value?
         console.log(evt)
@@ -156,7 +171,12 @@ function App() {
 
 
     return (
-    <div className="App">
+    <div className="App" style = {{ backgroundImage: `url(${Background})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+    }}>
+        {/*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />*/}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       {/*<header className="App-header">*/}
       {/*    */}
@@ -212,7 +232,7 @@ function App() {
                       <Dropdown.Item eventKey='descending'>Descending</Dropdown.Item>
                   </DropdownButton>
               </div>
-              <Showcase characters={characters}></Showcase>
+              <Showcase setActiveCharacter={setActiveCharacter} characters={characters}></Showcase>
           <Pagination onClick={handlePaginator}>
               {/*<Pagination.First />*/}
               <Pagination.Prev />
@@ -221,7 +241,52 @@ function App() {
               {/*<Pagination.Last />*/}
           </Pagination>
           </main>
+        {modalActive ? (
+            <div className="Modal" onClick={e => unsetActiveCharacter()}>
+                {/*<div className="Pickle-container">*/}
+                {/*    <figure>*/}
+                {/*        <img src={pickle} alt="pickle-rick" />*/}
+                {/*    </figure>*/}
+                {/*</div>*/}
 
+                <div className="Card-detail">
+                    <div className="Card-image">
+                        <figure>
+                            <img src={modalCharacter.image} alt={modalCharacter.name} />
+                        </figure>
+                    </div>
+                    <div className="Card-detail-description">
+                        <div className="Card-name">
+                            <h3>{modalCharacter.name}</h3>
+                            <div className="Characteristic">
+                                <p>Status</p>
+                                <p className="Characteristic-value">
+                                    {modalCharacter.status}
+                                </p>
+                            </div>
+                            <div className="Characteristic">
+                                <p>Specie</p>
+                                <p className="Characteristic-value">
+                                    {modalCharacter.species}
+                                </p>
+                            </div>
+                            <div className="Characteristic">
+                                <p>Gender</p>
+                                <p className="Characteristic-value">
+                                    {modalCharacter.gender}
+                                </p>
+                            </div>
+                            <div className="Characteristic">
+                                <p>Origin</p>
+                                <p className="Characteristic-value">
+                                    {modalCharacter.origin.name}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ) : null}
     </div>
   );
 }

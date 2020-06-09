@@ -16,6 +16,7 @@ export default function (props: any) {
                 <Navbar.Brand href="#home">
                     <img src={logo} className="App-logo" alt="logo" />
                 </Navbar.Brand>
+                <img src={require('../assets/images/Rick_and_Morty_logo.png')} className="App-logo"/>
                 <Nav className="mr-auto">
                     {/*<Nav.Link href="#home">Home</Nav.Link>*/}
 

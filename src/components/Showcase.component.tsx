@@ -8,7 +8,7 @@ export default function (props: any) {
                 {/*<h1>Rick and morty characters {props.count}</h1>*/}
                 <div className="Cards-container">
                     {props.characters.map((c: any, index: number) =>
-                        <IDCard key={index} content={c}></IDCard>
+                        <IDCard key={index} content={c} setActiveCharacter={props.setActiveCharacter}></IDCard>
                     )}
                 </div>
             </div>

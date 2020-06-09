@@ -4,22 +4,13 @@ import Api from "../services/Api.service";
 
 export default function (props: any) {
     let {id, name, image} = props.content;
-    const [activeCharacter, setActiveCharacter] = useState({});
-
-    const _setActiveCharacter = (id: any) => {
-        Api.getCharacterById(id).then((data: any) => {
-            setActiveCharacter(data);
-            console.log(activeCharacter)
-        });
-    }
-
 
     return (
         <div
             key={id}
             id={id}
             className="Card"
-            onClick={e => _setActiveCharacter(id)}
+            onClick={e => props.setActiveCharacter(id)}
         >
             <div className="Card-image">
                 <figure>
