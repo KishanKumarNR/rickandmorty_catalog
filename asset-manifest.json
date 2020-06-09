@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/rickandmorty_catalog/static/css/main.9a677686.chunk.css",
+    "main.js": "/rickandmorty_catalog/static/js/main.6e50a5cf.chunk.js",
+    "main.js.map": "/rickandmorty_catalog/static/js/main.6e50a5cf.chunk.js.map",
+    "runtime-main.js": "/rickandmorty_catalog/static/js/runtime-main.51d18881.js",
+    "runtime-main.js.map": "/rickandmorty_catalog/static/js/runtime-main.51d18881.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/rickandmorty_catalog/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.c23fc61c.chunk.js": "/rickandmorty_catalog/static/js/2.c23fc61c.chunk.js",
+    "static/js/2.c23fc61c.chunk.js.map": "/rickandmorty_catalog/static/js/2.c23fc61c.chunk.js.map",
+    "index.html": "/rickandmorty_catalog/index.html",
+    "precache-manifest.67d09dceba0d8c2601190e58e337e18d.js": "/rickandmorty_catalog/precache-manifest.67d09dceba0d8c2601190e58e337e18d.js",
+    "service-worker.js": "/rickandmorty_catalog/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/rickandmorty_catalog/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.9a677686.chunk.css.map": "/rickandmorty_catalog/static/css/main.9a677686.chunk.css.map",
+    "static/js/2.c23fc61c.chunk.js.LICENSE.txt": "/rickandmorty_catalog/static/js/2.c23fc61c.chunk.js.LICENSE.txt",
+    "static/media/Cartoon_Network_1992_logo.svg": "/rickandmorty_catalog/static/media/Cartoon_Network_1992_logo.3c26307a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.51d18881.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.c23fc61c.chunk.js",
+    "static/css/main.9a677686.chunk.css",
+    "static/js/main.6e50a5cf.chunk.js"
+  ]
+}
